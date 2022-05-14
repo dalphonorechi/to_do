@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import TodoItem from "../components/TodoItem";
+import { Todo } from "../Data/Data";
 
 const Container = styled.div`
   display: flex;
@@ -33,16 +34,15 @@ const AllLists = () => {
       <Box>
         <NavBar />
       </Box>
+
       <ListWrapper>
-        <GridCell>
-          <TodoItem />
-        </GridCell>
-        <GridCell>
-          <TodoItem />
-        </GridCell>
-        <GridCell>
-          <TodoItem />
-        </GridCell>
+        {Todo.map((item) => {
+          return (
+            <GridCell>
+              <TodoItem item={item} key={item.title} />
+            </GridCell>
+          );
+        })}
       </ListWrapper>
     </Container>
   );

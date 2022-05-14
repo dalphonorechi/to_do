@@ -15,6 +15,7 @@ const TitleContainer = styled.div``;
 
 const Title = styled.h3`
   font-weight: 400;
+  color: white;
 `;
 const ContentContainer = styled.div`
   padding: 5px;
@@ -22,11 +23,12 @@ const ContentContainer = styled.div`
 const Content = styled.p`
   font-weight: 200;
   margin-bottom: 3px;
+  color: white;
 `;
 const OpenTodo = styled(Link)`
-text-decoration: none;
+  text-decoration: none;
 `;
-const TodoItem = () => {
+const TodoItem = (props) => {
   return (
     <Box
       sx={{
@@ -42,19 +44,18 @@ const TodoItem = () => {
       <OpenTodo to={"/todo"}>
         <Paper
           sx={{
-            backgroundColor: "#663399",
+            backgroundColor: props.item.color,
+            display: "flex",
+            width: "100%",
+            height: "100%",
           }}
         >
           <Container>
             <TitleContainer>
-              <Title>Shopping</Title>
+              <Title>{props.item.title}</Title>
             </TitleContainer>
             <ContentContainer>
-              <Content>Juice</Content>
-              <Content>Detergent</Content>
-              <Content>Snacks</Content>
-              <Content>Fruits</Content>
-              <Content>Pants</Content>
+              <Content>{props.item.list}</Content>
             </ContentContainer>
           </Container>
         </Paper>
