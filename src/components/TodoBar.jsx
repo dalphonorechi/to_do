@@ -11,10 +11,14 @@ const Container = styled.div`
 `;
 const TodoBar = (props) => {
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      elevation={0}
+      sx={{ backgroundColor: props.barColor }}
+    >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Shopping
+          {props.barTitle}
         </Typography>
         <Button color="inherit" onClick={props.onDelete}>
           <Delete color="white" />

@@ -25,3 +25,5 @@ export const Todo = [
     list: "juice\nFruits\nSnacks",
   },
 ];
+
+export const Colors = ["#182FFF", "#0EA7A5", "#FFD700", "#C92519","#FF7518"];

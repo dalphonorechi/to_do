@@ -41,7 +41,7 @@ const TodoItem = (props) => {
         },
       }}
     >
-      <OpenTodo to={"/todo"}>
+      <OpenTodo to={"/todo"} state={{ item: props.item }}>
         <Paper
           sx={{
             backgroundColor: props.item.color,

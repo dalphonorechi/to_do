@@ -13,7 +13,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   width: 380px;
-  height: 100vh;
+  height: 100%;
 `;
 
 function App() {

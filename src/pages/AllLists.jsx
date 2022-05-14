@@ -38,7 +38,7 @@ const AllLists = () => {
       <ListWrapper>
         {Todo.map((item) => {
           return (
-            <GridCell>
+            <GridCell key={item.title}>
               <TodoItem item={item} key={item.title} />
             </GridCell>
           );
