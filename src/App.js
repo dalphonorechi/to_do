@@ -8,6 +8,7 @@ import ToDo from "./pages/ToDo";
 const Container = styled.div`
   justify-content: center;
   display: flex;
+  height: 100vh;
 `;
 
 const Wrapper = styled.div`

@@ -1,4 +1,4 @@
-import { List } from "@mui/material";
+import { List, ImageList, ImageListItem } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import styled from "styled-components";
@@ -35,15 +35,19 @@ const AllLists = () => {
         <NavBar />
       </Box>
 
-      <ListWrapper>
+      <ImageList
+        sx={{ width: "100%" }}
+        cols={2}
+        rowHeight={170}
+      >
         {Todo.map((item) => {
           return (
-            <GridCell key={item.title}>
-              <TodoItem item={item} key={item.title} />
-            </GridCell>
+            <ImageListItem key={item.id}>
+              <TodoItem item={item} key={item.id} />
+            </ImageListItem>
           );
         })}
-      </ListWrapper>
+      </ImageList>
     </Container>
   );
 };

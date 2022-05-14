@@ -5,25 +5,35 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
-  padding: 5px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  position: relative;
+  height: 100%;
+  width: 100%;
 `;
-const TitleContainer = styled.div``;
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+`;
 
 const Title = styled.h3`
   font-weight: 400;
   color: white;
 `;
 const ContentContainer = styled.div`
-  padding: 5px;
+  padding: 10px;
+  flex: 3;
+  white-space: wrap;
 `;
 const Content = styled.p`
-  font-weight: 200;
-  margin-bottom: 3px;
   color: white;
+  line-height: 1em;
+  max-width: 90%;
+  text-overflow: ellipsis;
 `;
 const OpenTodo = styled(Link)`
   text-decoration: none;
@@ -45,7 +55,6 @@ const TodoItem = (props) => {
         <Paper
           sx={{
             backgroundColor: props.item.color,
-            display: "flex",
             width: "100%",
             height: "100%",
           }}

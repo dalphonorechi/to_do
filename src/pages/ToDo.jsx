@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 10px;
+  white-space: pre-wrap;
 `;
 const Content = styled.p``;
 const ToDo = () => {

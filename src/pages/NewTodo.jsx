@@ -66,24 +66,27 @@ const NewTodo = () => {
   function saveTodo() {
     if (from === "new") {
       const New = {
+        id: Todo.length,
         title: title,
         color: color,
         list: list,
       };
+      console.log(New.id);
 
       Todo.push(New);
+      navigate(-1);
     } else {
+      const index = Todo.findIndex((i) => i.id === item.id);
       const New = {
+        id: index,
         title: title,
         color: color,
         list: list,
       };
-      const index = Todo.findIndex((i) => i.title === item.title);
-      Todo.splice(index, 1);
-      Todo[index] = New;
-    }
 
-    navigate(-1);
+      Todo[index] = New;
+      navigate(-2);
+    }
   }
   return (
     <Container>
@@ -107,21 +110,18 @@ const NewTodo = () => {
           fullWidth
           label="Title"
           variant="standard"
-          defaultValue={title}
+          value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
         <TextField
           sx={{
             mt: 10,
-            /*  "& .MuiInput-root": {
-              "&:before, :after, :hover:not(.Mui-disabled):before": {
-                borderBottom: 0,
-              },
-            }, */
+            backgroundColor: color,
+            height: "100%",
           }}
           id="outlined-multiline-static"
           multiline
-          rows={10}
+          rows={14}
           defaultValue={list}
           onChange={(event) => setList(event.target.value)}
           InputProps={{
