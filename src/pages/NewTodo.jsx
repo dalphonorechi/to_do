@@ -1,10 +1,12 @@
 import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
-import React, { useState } from "react";
+
+import { makeStyles } from "@mui/styles";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import NewBar from "../components/NewBar";
 import { Colors, Todo } from "../Data/Data";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const Container = styled.div`
   display: flex;
@@ -23,7 +25,7 @@ const ListWrapper = styled.div`
 `;
 const WrapperColors = styled.div`
   display: flex;
-  padding: 10px;
+  margin-bottom: 10px;
 `;
 const Color = styled.div`
   display: flex;
@@ -35,23 +37,52 @@ const Color = styled.div`
   background-color: ${(props) => props.bgColor};
   cursor: pointer;
 `;
+
+const useStyles = makeStyles(() => ({
+  noBorder: {
+    border: "none",
+  },
+}));
 const NewTodo = () => {
-  const [color, setColor] = useState(Colors[0]);
-  const [title, setTitle] = useState("New to do");
-  const [list, setList] = useState("");
+  let [color, setColor] = useState(Colors[0]);
+  let [title, setTitle] = useState("New to do");
+  let [list, setList] = useState("");
   const navigate = useNavigate();
+  const classes = useStyles();
+  const location = useLocation();
+  const { from } = location.state;
+  const { item } = location.state;
+  useEffect(() => {
+    if (from === "edit") {
+      color = item.color;
+      title = item.title;
+      list = item.list;
+    }
+  });
 
   function handleColor(colorString) {
     setColor(colorString);
   }
   function saveTodo() {
-    const New = {
-      title: title,
-      color: color,
-      list: list,
-    };
+    if (from === "new") { 
+      const New = {
+        title: title,
+        color: color,
+        list: list,
+      };
 
-    Todo.push(New);
+      Todo.push(New);
+    } else {
+      const New = {
+        title: title,
+        color: color,
+        list: list,
+      };
+      const index = Todo.findIndex((i) => i.title === item.title);
+      Todo.splice(index, 1);
+      Todo[index] = New;
+    }
+
     navigate(-1);
   }
   return (
@@ -76,16 +107,26 @@ const NewTodo = () => {
           fullWidth
           label="Title"
           variant="standard"
+          defaultValue={title}
           onChange={(event) => setTitle(event.target.value)}
         />
         <TextField
-          sx={{ mt: 10 }}
+          sx={{
+            mt: 10,
+            /*  "& .MuiInput-root": {
+              "&:before, :after, :hover:not(.Mui-disabled):before": {
+                borderBottom: 0,
+              },
+            }, */
+          }}
           id="outlined-multiline-static"
-          label="To Do List "
           multiline
           rows={10}
-          defaultValue="Enter your List"
+          defaultValue={list}
           onChange={(event) => setList(event.target.value)}
+          InputProps={{
+            classes: { notchedOutline: classes.noBorder },
+          }}
         />
       </Wrapper>
     </Container>
