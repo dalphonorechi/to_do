@@ -49,6 +49,7 @@ const ToDo = () => {
           onDelete={handleClickOpen}
           barColor={item.color}
           barTitle={item.title}
+          barItem={item}
         />
       </Box>
       <Wrapper>

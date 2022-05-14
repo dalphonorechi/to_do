@@ -54,17 +54,17 @@ const NewTodo = () => {
   const { item } = location.state;
   useEffect(() => {
     if (from === "edit") {
-      color = item.color;
-      title = item.title;
-      list = item.list;
+      setColor(item.color);
+      setTitle(item.title);
+      setList(item.list);
     }
-  });
+  }, []);
 
   function handleColor(colorString) {
     setColor(colorString);
   }
   function saveTodo() {
-    if (from === "new") { 
+    if (from === "new") {
       const New = {
         title: title,
         color: color,

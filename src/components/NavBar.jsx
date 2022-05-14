@@ -19,7 +19,7 @@ const NavBar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Todo List
         </Typography>
-        <AddTodo to={"/newtodo"}>
+        <AddTodo to={"/newtodo"} state={{ from: "new" }}>
           <Button color="inherit">
             <Add color="white" />
           </Button>
