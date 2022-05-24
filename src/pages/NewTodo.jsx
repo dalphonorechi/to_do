@@ -7,6 +7,9 @@ import styled from "styled-components";
 import NewBar from "../components/NewBar";
 import { Colors, Todo } from "../Data/Data";
 import { useLocation, useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addToNotes } from "../Store/NotesSlice";
+import { nanoid } from "nanoid";
 
 const Container = styled.div`
   display: flex;
@@ -44,6 +47,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 const NewTodo = () => {
+  const dispatch = useDispatch();
   let [color, setColor] = useState(Colors[0]);
   let [title, setTitle] = useState("New to do");
   let [list, setList] = useState("");
@@ -66,14 +70,14 @@ const NewTodo = () => {
   function saveTodo() {
     if (from === "new") {
       const New = {
-        id: Todo.length,
+        id: nanoid(),
         title: title,
         color: color,
         list: list,
       };
-      console.log(New.id);
+      // console.log(New.id);
 
-      Todo.push(New);
+      dispatch(addToNotes(New));
       navigate(-1);
     } else {
       const index = Todo.findIndex((i) => i.id === item.id);

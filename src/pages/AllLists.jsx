@@ -1,10 +1,10 @@
-import { List, ImageList, ImageListItem } from "@mui/material";
+import { ImageList, ImageListItem } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import TodoItem from "../components/TodoItem";
-import { Todo } from "../Data/Data";
 
 const Container = styled.div`
   display: flex;
@@ -29,18 +29,15 @@ const GridCell = styled.div`
 `;
 
 const AllLists = () => {
+  const notes = useSelector((state) => state.notes.value);
   return (
     <Container>
       <Box>
         <NavBar />
       </Box>
 
-      <ImageList
-        sx={{ width: "100%" }}
-        cols={2}
-        rowHeight={170}
-      >
-        {Todo.map((item) => {
+      <ImageList sx={{ width: "100%" }} cols={2} rowHeight={170}>
+        {notes.map((item) => {
           return (
             <ImageListItem key={item.id}>
               <TodoItem item={item} key={item.id} />
