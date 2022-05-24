@@ -5,7 +5,7 @@
 <ul>
 <li>Add state management. <input type="checkbox" id="scales" name="scales"checked></li>
 <li>Improve the UI.</li>
-<li>ADD  data persistance.</li>
+<li>Add  data persistance.</li>
 </ul>
 
 
